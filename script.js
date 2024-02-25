@@ -19,20 +19,24 @@ console.log(fetchStudent());
 async function fetchAndShowStudent() {
   try {
     hogwartsStudents = await fetchStudent();
-    showAllGryffindor();
-    //console.log("Inside fetchAndShowStudent function", hogwartsStudents);
+    const gryffindorStudents = hogwartsStudents.filter(
+      (student) => student.house === "Gryffindor"
+    );
+    showAllGryffindor(gryffindorStudents);
+
+    console.log("Inside fetchAndShowStudent function", showAllGryffindor);
   } catch {
     console.log("unable to load Hogwarts Student", error);
   }
 }
 
-fetchAndShowStudent();
+//fetchAndShowStudent();
 
 //Read to show gryffindorstudents
-function showAllGryffindor() {
+function showAllGryffindor(gryffindorStudents) {
   gryffindorContainer.innerHTML = "";
 
-  hogwartsStudents.forEach((gryffindorMember, index) => {
+  gryffindorStudents.forEach((gryffindorMember, index) => {
     const gryffindorCard = document.createElement("div");
 
     //Delete functionality
@@ -56,3 +60,5 @@ function deleteStudentGryffindor(index) {
   console.log("after deletion", hogwartsStudents);
   showAllGryffindor();
 }
+
+addBtnGryffindor.onclick = fetchAndShowStudent;
