@@ -30,6 +30,8 @@ fetchAndShowStudent();
 
 //Read to show gryffindorstudents
 function showAllGryffindor() {
+  gryffindorContainer.innerHTML = "";
+
   hogwartsStudents.forEach((gryffindorMember, index) => {
     const gryffindorCard = document.createElement("div");
 
@@ -37,9 +39,20 @@ function showAllGryffindor() {
     const deleteBtn = document.createElement("Button");
     deleteBtn.innerHTML = "Delete student";
     deleteBtn.style.backgroundColor = "red";
+    deleteBtn.addEventListener("click", function () {
+      deleteStudentGryffindor(index);
+    });
 
     gryffindorCard.innerHTML = `<img src="${gryffindorMember.image}" style="width: 100px"/> <h3>${gryffindorMember.name}</h3>`;
     gryffindorContainer.append(gryffindorCard);
-    console.log(gryffindorMember.gender);
+    gryffindorCard.append(deleteBtn);
+    console.log(gryffindorMember.name);
   });
+}
+
+function deleteStudentGryffindor(index) {
+  console.log("Inside delete function");
+  hogwartsStudents.splice(index, 1);
+  console.log("after deletion", hogwartsStudents);
+  showAllGryffindor();
 }
