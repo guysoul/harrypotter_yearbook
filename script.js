@@ -33,6 +33,11 @@ function showAllGryffindor() {
   hogwartsStudents.forEach((gryffindorMember, index) => {
     const gryffindorCard = document.createElement("div");
 
+    //Delete
+    const deleteBtn = document.createElement("Button");
+    deleteBtn.innerHTML = "Delete student";
+    deleteBtn.style.backgroundColor = "red";
+
     gryffindorCard.innerHTML = `<img src="${gryffindorMember.image}" style="width: 100px"/> <h3>${gryffindorMember.name}</h3>`;
     gryffindorContainer.append(gryffindorCard);
     console.log(gryffindorMember.gender);
